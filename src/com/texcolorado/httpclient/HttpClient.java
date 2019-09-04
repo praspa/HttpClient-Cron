@@ -21,7 +21,7 @@ public class HttpClient {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();
 		
-		String hostname = System.getProperty("APP_HOSTNAME");
+		String hostname = System.getenv("APP_HOSTNAME");
 		
 	    CloseableHttpClient httpclient = HttpClients.createDefault();
 	    HttpPost httpPost = new HttpPost("http://"+ hostname + "/api/todos");
