@@ -26,20 +26,25 @@ public class HttpClient {
 	    CloseableHttpClient httpclient = HttpClients.createDefault();
 	    HttpPost httpPost = new HttpPost("http://"+ hostname + "/api/todos");
 	    
-	    String JSON_STRING="{text: New TODO From Java HttpClient at " + dtf.format(now) + "}";
+	    String JSON_STRING = "{\"text\": \"New Task added: " + dtf.format(now) + "\"}";
 	    
 	    HttpEntity stringEntity = new StringEntity(JSON_STRING,ContentType.APPLICATION_JSON);
 	    httpPost.setEntity(stringEntity);
 	    
 	    try {
-			CloseableHttpResponse response2 = httpclient.execute(httpPost);
+			CloseableHttpResponse response = httpclient.execute(httpPost);
+			System.out.println("HTTP Response Status: " + response.getStatusLine().getStatusCode());
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Protocol Exception");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("IOException");
 		}
+	    
+	    System.out.println("Done");
 	}
 
 }
